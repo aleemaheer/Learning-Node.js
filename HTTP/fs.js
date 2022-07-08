@@ -49,3 +49,21 @@
 // }
 
 // practice();
+
+// NODE JS FILE STATS
+
+const fs = require('fs/promises');
+
+async function fileStat() {
+    try {
+        const stats = await fs.stat('data.txt', 'r');
+        console.log(stats.isFile()); // true
+        stats.isDirectory(); // false
+        stats.isSymbolicLink(); // false
+        console.log("Size: ", stats.size);
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+fileStat();
