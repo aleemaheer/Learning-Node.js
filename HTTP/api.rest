@@ -1,0 +1,2 @@
+### Get request
+GET https://jsonplaceholder.typicode.com/users HTTP/1.1
