@@ -70,27 +70,62 @@
 
 // NODE JS FILE PATHS
 
-const path= require('path');
+// const path= require('path');
 
-const extName = path.extname('data.txt');
-const dirName = path.dirname('data.txt');
-const baseName = path.basename('data.txt');
-const fileName = path.basename('data.txt', path.extname('data.txt')); 
-console.log(extName)
-console.log(dirName)
-console.log(baseName)
-console.log(fileName);
+// const extName = path.extname('data.txt');
+// const dirName = path.dirname('data.txt');
+// const baseName = path.basename('data.txt');
+// const fileName = path.basename('data.txt', path.extname('data.txt')); 
+// console.log(extName)
+// console.log(dirName)
+// console.log(baseName)
+// console.log(fileName);
 
 // Joining path
-const name = 'Joe';
-const joinedPath = path.join('/', 'users', name, 'notes.txt'); // /users/name/notes.txt
+// const name = 'Joe';
+// const joinedPath = path.join('/', 'users', name, 'notes.txt'); // /users/name/notes.txt
 
-console.log(joinedPath);
+// console.log(joinedPath);
 
 // Resolving path
-const resolvedPath = path.resolve('data.txt');
-path.resolve('tmp', 'joe.txt'); // '/Users/joe/tmp/joe.txt' if run from my home folder
-path.resolve('/etc', 'joe.txt'); // '/etc/joe.txt'
-path.normalize('/users/joe/..//test.txt'); // '/users/test.txt'
+// const resolvedPath = path.resolve('data.txt');
+// path.resolve('tmp', 'joe.txt'); // '/Users/joe/tmp/joe.txt' if run from my home folder
+// path.resolve('/etc', 'joe.txt'); // '/etc/joe.txt'
+// path.normalize('/users/joe/..//test.txt'); // '/users/test.txt'
 
-console.log(resolvedPath);
+// console.log(resolvedPath);
+
+// Reading file with NODE JS
+
+// const fs = require('fs');
+// fs.readFile('data.txt', 'utf8', (err, data) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(data);
+// })
+
+// Alternate in syncronous way
+
+// const fs = require('fs');
+// try {
+//     const data = fs.readFileSync('data.txt', 'utf8');
+//     console.log(data);
+// }
+// catch (err) {
+//     console.log(err.message);
+// }
+
+// Alternate usng fs/promises way
+const fs = require('fs/promises');
+
+async function readFile() {
+    try {
+        const data = await fs.readFile('data.txt', { encoding: 'utf-8'});
+        console.log(data);
+    }
+    catch (err) {
+        console.log(err.message);
+    }
+}
+readFile();
