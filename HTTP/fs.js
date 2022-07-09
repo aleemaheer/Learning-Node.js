@@ -75,7 +75,7 @@
 // const extName = path.extname('data.txt');
 // const dirName = path.dirname('data.txt');
 // const baseName = path.basename('data.txt');
-// const fileName = path.basename('data.txt', path.extname('data.txt')); 
+// const fileName = path.basename('data.txt', path.extname('data.txt'));
 // console.log(extName)
 // console.log(dirName)
 // console.log(baseName)
@@ -183,15 +183,141 @@
 // })
 
 // Alternate using fs/promises
-const fs = require('fs/promises');
-const content = 'Using fs/promises';
-async function appendFile() {
+// const fs = require('fs/promises');
+// const content = 'Using fs/promises';
+// async function appendFile() {
+//     try {
+//         await fs.appendFile('data.txt', content);
+//         console.log('Success');
+//     }
+//     catch (err) {
+//         console.log(err)
+//     }
+// }
+// appendFile();
+
+// Create a new folder in NODE JS
+// const fs = require('fs');
+// const folderName = '/home/aleemaheer/learning_nodejs/HTTP/two';
+// try {
+//     if (!fs.existsSync(folderName)) {
+//         fs.mkdirSync(folderName);
+//     }
+// }
+// catch (err) {
+//     console.log(err.message);
+// }
+
+// Reading the content of a directory
+// const fs = require('fs');
+// const folderName = '/home/aleemaheer/learning_nodejs/HTTP';
+// const path = fs.readdirSync(folderName);
+// console.log(path);
+
+// Getting the full path
+// const fs = require('fs');
+// const path = require('path');
+// const folderName = '/home/aleemaheer/learning_nodejs/HTTP';
+// const items = fs.readdirSync(folderName);
+// items.forEach(item => {
+//     console.log(path.join(folderName, item));
+// })
+// Alternate using map();
+// const fullPath = (items.map(item => {
+//     return path.join(folderName, item);
+// }));
+// console.log(fullPath);
+
+// You can also filter the results to only return the files, and exclude the folders
+// const fs = require("fs");
+// const path = require("path");
+// const folderPath = "/home/aleemaheer/learning_nodejs/HTTP";
+// const fileName = "/home/aleemaheer/learning_nodejs/HTTP";
+// const isFile = (fileName) => {
+// 	return fs.lstatSync(fileName).isFile();
+// };
+
+// const filteredFile = fs
+// 	.readdirSync(folderPath)
+// 	.map((fileName) => {
+// 		return path.join(folderPath, fileName);
+// 	})
+// 	.filter(isFile);
+// console.log(filteredFile);
+
+// Renaming a file in NODE JS
+// const fs = require('fs');
+// fs.rename('/home/aleemaheer/learning_nodejs/HTTP/test', '/home/aleemaheer/learning_nodejs/HTTP/testing', (err) => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log('Success');
+// })
+// Using Syncronous way
+// const fs = require('fs');
+// try {
+//     fs.renameSync('/home/aleemaheer/learning_nodejs/HTTP/testing', '/home/aleemaheer/learning_nodejs/HTTP/test');
+//     console.log("Success");
+// }
+// catch (err) {
+//     console.log(err.message);
+// }
+// Using fs/promises
+// const fs = require('fs/promises');
+// async function renameDirectory() {
+//     try {
+//         await fs.rename('/home/aleemaheer/learning_nodejs/HTTP/test', '/home/aleemaheer/learning_nodejs/HTTP/testing');
+//         console.log('Success');
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// }
+
+// renameDirectory();
+
+// Removing a folder
+// const fs = require('fs');
+// const dir = '/home/aleemaheer/learning_nodejs/HTTP/testing'
+// fs.rmdir(dir, { recursive: true }, err => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log(`${dir} is removed`);
+// })
+
+// NOTE: In Node v16.x the option recursive is deprecated for fs.rmdir of callback API,
+// instead use fs.rm to delete folders that have content in them:
+
+// Or we can also use fs-extra module, which is very popular and well-maintained
+// const fs = require('fs-extra');
+// const dir = '/home/aleemaheer/learning_nodejs/HTTP/one';
+// fs.remove(dir, err => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(dir + ' is removed');
+// });
+// Alternate using it with promise
+// const fs = require('fs-extra');
+// const dir = '/home/aleemaheer/learning_nodejs/HTTP/one';
+// fs.remove(dir)
+// .then(() => {
+//     console.log("Successfully removed " + dir);
+// })
+// .catch(err => {
+//     console.log(err.message);
+// })
+// Or use with async await
+const fs = require('fs-extra');
+const dir = '/home/aleemaheer/learning_nodejs/HTTP/one';
+async function example(dir) {
     try {
-        await fs.appendFile('data.txt', content);
-        console.log('Success');
+        await fs.remove(dir);
+        console.log("Success");
     }
     catch (err) {
-        console.log(err)
+        console.log(err.message);
     }
 }
-appendFile();
+example(dir);
