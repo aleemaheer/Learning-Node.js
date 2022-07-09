@@ -117,15 +117,81 @@
 // }
 
 // Alternate usng fs/promises way
-const fs = require('fs/promises');
+// const fs = require('fs/promises');
 
-async function readFile() {
+// async function readFile() {
+//     try {
+//         const data = await fs.readFile('data.txt', { encoding: 'utf-8'});
+//         console.log(data);
+//     }
+//     catch (err) {
+//         console.log(err.message);
+//     }
+// }
+// readFile();
+
+// Writing files with nodejs
+// const fs = require('fs');
+// const content = 'Hello there!';
+// fs.writeFile('data.txt', content, err => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log("File written successfully");
+//     fs.readFile('data.txt', 'utf-8', (err, data) => {
+//         if (err) {
+//             console.log(err.message);
+//         }
+//         console.log(data);
+//     })
+// })
+
+// Alternative syncronous way
+// const fs = require('fs');
+// const content = "In syncronous way";
+// try {
+//     fs.writeFileSync('data.txt', content);
+//     console.log("File writed successfully");
+// }
+// catch (err) {
+//     console.log(err.message);
+// }
+
+// Using fs/promises
+// const fs = require('fs/promises');
+// const content = 'center';
+// async function writeData() {
+//     try {
+//         await fs.writeFile('data.txt', content, { flag: 'a+' }); // By using a+ flag, we can append to the file, previous data will not be losted or erased
+//         console.log("File writed successfully");
+//     }
+//     catch (err) {
+//         console.log(err.message);
+//     }
+// }
+// writeData();
+
+// Appending to a file
+
+// const fs = require('fs');
+// const content = 'Hello';
+// fs.appendFile('data.txt', content, (err, data) => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log("Success");
+// })
+
+// Alternate using fs/promises
+const fs = require('fs/promises');
+const content = 'Using fs/promises';
+async function appendFile() {
     try {
-        const data = await fs.readFile('data.txt', { encoding: 'utf-8'});
-        console.log(data);
+        await fs.appendFile('data.txt', content);
+        console.log('Success');
     }
     catch (err) {
-        console.log(err.message);
+        console.log(err)
     }
 }
-readFile();
+appendFile();
